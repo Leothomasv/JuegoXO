@@ -23,11 +23,12 @@ public class XO {
          do{   
         System.out.println("JUEGO DE \"x\" Y \"0\"" );
         System.out.println("1. Jugar"
-                + "\n2 .ver partidas"
-                + "\n3. Cambiar letra del Jugador"
+                + "\n2. Ver partidas"
+                + "\n3. Cambiar Letra del Jugador"
                 + "\n4. Cambiar Nombre del jugador "
         +"\n5. Salir");
-        op=leer.nextInt();
+             System.out.print("Ingrese opcion deseada: ");
+         op=leer.nextInt();
         switch(op){
             case 1:
                JG.autoLlenado();

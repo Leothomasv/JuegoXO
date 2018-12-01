@@ -22,8 +22,8 @@ import java.util.Scanner;
  */
 public class Juego {
     String tablero[][];
-    String X,o;
-    private String jugadores[];
+    String X,O;
+    private String Jugador[];
     Random v;
     Scanner lee=new Scanner(System.in);
     File b;
@@ -33,11 +33,10 @@ public class Juego {
     public Juego() {
         this.tablero=new String[3][3];
         v=new Random();
-        X="x";
-        o="0";
-        jugadores=new String[2];
-        jugadores[0]="Jugador "+X;
-        jugadores[1]="Jugador "+o;
+        
+        Jugador=new String[2];
+        Jugador[0]="Jugador 1";
+        Jugador[1]="Jugador 2";
         b=new File("Archivo.txt");
 
     }
@@ -60,7 +59,7 @@ public class Juego {
     }
 
     public boolean marcarJugada(int fila,int columna){
-        if(tablero[fila][columna].equals(X) || tablero[fila][columna].equals(o)){
+        if(tablero[fila][columna].equals(X) || tablero[fila][columna].equals(O)){
             return false;
         }
         return true;
@@ -68,68 +67,68 @@ public class Juego {
 
     public void asignarNombre(){
     System.out.println("\nSeleccione a que jugador quiere cambiarle el Nombre:"
-            + "\n1. "+jugadores[0]
-            +"\n2. "+jugadores[1]);
-    System.out.println("Seleccione una Opcion:");
+            + "\n1. "+Jugador[0]
+            +"\n2. "+Jugador[1]);
+    System.out.print("Seleccione una Opcion:");
     int opc=lee.nextInt();
     switch (opc){
         case 1:
-            System.out.println("Ingrese el nuevo nombre:");
+            System.out.print("Ingrese un nuevo nombre:");
             String name=lee.next();
-            if(name.equals(jugadores[1])||  name.equals(jugadores[0])){
-                System.out.println("Ese nombre ya esta en uso!!!!!!");
+            if(name.equals(Jugador[1])||  name.equals(Jugador[0])){
+                System.out.println("Ese nombre ya existe!!!!");
             }else{
-                System.out.println("Cambio completado");
-                 jugadores[0]=name;
+                System.out.println("Cambio hecho...");
+                 Jugador[0]=name;
             }
             break;
         case 2:
-               System.out.println("Ingrese el nuevo nombre:");
+               System.out.print("Ingrese un nuevo nombre:");
                String name1=lee.next();
-            if(name1.equals(jugadores[0]) || name1.equals(jugadores[1])){
+            if(name1.equals(Jugador[0]) || name1.equals(Jugador[1])){
                 System.out.println("Ese nombre ya esta en uso!!!!!!");
             }else{
-                System.out.println("Cambio completado");
-                 jugadores[1]=name1;
+                System.out.println("Cambio hecho....");
+                 Jugador[1]=name1;
             }
             break;
         default:
-            System.out.println("Ingrese Opcion valida!!!!!!!!!!");
+            System.out.println("No existe esa opcion!!!!");
             break;
      }
 
     }
 
     public void asignarSimbolo(){
-        System.out.println("\nSeleccione a que jugador quiere cambiarle el Simbolo:"
-                + "\n1. "+jugadores[0]
-                +"\n2. "+jugadores[1]);
-        System.out.println("Seleccione una Opcion:");
+        System.out.println("\nSeleccione al jugador quiere cambiarle el Simbolo:"
+                + "\n1. "+Jugador[0]
+                +"\n2. "+Jugador[1]);
+        System.out.print("Seleccione una Opcion:");
         
         int opc=lee.nextInt();
         switch (opc){
             case 1:
-                System.out.println("Ingrese el nuevo Simbolo:");
+                System.out.print("Ingrese el nuevo Simbolo:");
                 String name=lee.next();
-                if(name.equals(o)|| name.equals(X)){
-                    System.out.println("Ese nombre ya esta en uso!!!!!!");
+                if(name.equals(O)|| name.equals(X)){
+                    System.out.println("Ese simbolo ya esta en uso!!!");
                 }else{
-                    System.out.println("Cambio completado");
+                    System.out.println("Cambio hecho...");
                      X=name;
                 }
                 break;
             case 2:
-                   System.out.println("Ingrese el nuevo Simbolo:");
+                   System.out.print("Ingrese el nuevo Simbolo:");
                    String name1=lee.next();
-                if(name1.equals(o) || name1.equals(X)){
-                    System.out.println("Ese nombre ya esta en uso!!!!!!");
+                if(name1.equals(O) || name1.equals(X)){
+                    System.out.println("Ese simbolo ya esta en uso!!!!!!");
                 }else{
-                    System.out.println("Cambio completado");
-                     o=name1;
+                    System.out.println("Cambio hecho...");
+                     O=name1;
                 }
                 break;
             default:
-                System.out.println("Ingrese Opcion valida!!!!!!!!!!");
+                 System.out.println("No existe esa opcion!!!!");
                 break;
         }
 
@@ -156,7 +155,7 @@ public class Juego {
         }
 
         public String escojerP(){
-            return jugadores[v.nextInt(2)];
+            return Jugador[v.nextInt(2)];
         }
 
         public boolean revisarGanador(){
@@ -180,7 +179,7 @@ public class Juego {
                if(h2==tablero.length){
                  return true;
              }
-          }else if(tablero[v][y].equals(o)){
+          }else if(tablero[v][y].equals(O)){
               v++;
               j2++;
               if(j2==tablero.length){
@@ -194,7 +193,7 @@ public class Juego {
                if(h3==tablero.length){
                  return true;
              }
-          }else if(tablero[n][y].equals(o)){
+          }else if(tablero[n][y].equals(O)){
               n--;
               j3++;
               if(j3==tablero.length){
@@ -207,7 +206,7 @@ public class Juego {
              if(h==tablero.length){
                  return true;
              }
-          }else if(tablero[x][y].equals(o)){
+          }else if(tablero[x][y].equals(O)){
              j++;
              if(j==tablero.length){
                 return true; 
@@ -219,7 +218,7 @@ public class Juego {
               if(h1==tablero.length){
                 return true; 
              }
-          }else if(tablero[y][x].equals(o)){
+          }else if(tablero[y][x].equals(O)){
              j1++;
              if(j1==tablero.length){
                 return true; 
@@ -228,44 +227,44 @@ public class Juego {
       }
     }
          }catch(Exception e){
-             System.out.println("error: "+e);
+             System.out.println("Error: "+e);
          }
         return false;    
         }
 
         public void jugar(){
         Scanner leer=new Scanner(System.in);
-        System.out.println("El primer turno se escoje automaticamente");
+        System.out.println("El primer turno se escoje aleatoriamente");
         String player=escojerP();
         String turno="";
         boolean ganador=false;
         boolean revisar=true;
         
-        if(player.equals(jugadores[0])){
+        if(player.equals(Jugador[0])){
             System.out.println("\nEmpieza "+player);
             turno=X;
         }else{
             System.out.println("\nEmpieza "+player);
-            turno=o;
+            turno=O;
         }
 
         do{
         if(turno.equals(X)){
-            System.out.println("Turno de "+jugadores[0]);
+            System.out.println("Turno de "+Jugador[0]);
             System.out.println("Escoja la fila: ");
-            int q=leer.nextInt();
+            int F=leer.nextInt();
             System.out.println("Escoja la Columna: ");
-            int w=leer.nextInt();
-            revisar=marcarJugada(q,w);
+            int C=leer.nextInt();
+            revisar=marcarJugada(F,C);
             if(revisar==true){
-            tablero[q][w]=X;
+            tablero[F][C]=X;
             imprimirTablero();
             ganador=revisarGanador();
-            turno=o;
+            turno=O;
             
             if(ganador==true){
             try{  
-                String b="El ganador de la partida fue: "+ jugadores[0];
+                String b="El ganador de la partida fue: "+ Jugador[0];
             System.out.println("Gano "+X);
             fileSaver(b);
               }catch(IOException e){
@@ -277,31 +276,31 @@ public class Juego {
                 System.out.println("Espacio Ocupado!!!");
         }
 
-        }else if(turno.equals(o)){
-           System.out.println("Turno de "+jugadores[1]);
+        }else if(turno.equals(O)){
+           System.out.println("Turno de "+Jugador[1]);
            System.out.println("Escoja la fila: ");
-            int q=leer.nextInt();
+            int F=leer.nextInt();
             System.out.println("Escoja la Columna: ");
-
-            int w=leer.nextInt();
-            revisar=marcarJugada(q,w);
+            int C=leer.nextInt();
+            
+            revisar=marcarJugada(F,C);
             if(revisar==true){
-            tablero[q][w]=o;
+            tablero[F][C]=O;
             imprimirTablero();
             ganador=revisarGanador();
             turno=X;
             
             if(ganador==true){
               try{  
-                String b="El ganador de la partida fue: "+ jugadores[1];
-            System.out.println("Gano "+o);
-            fileSaver(b);
+                String B="El ganador de la partida es: "+ Jugador[1];
+            System.out.println("Gano "+O);
+            fileSaver(B);
               }catch(IOException e){
                   System.out.println(e.getMessage());
               }
             }
             }else{
-                System.out.println("Espacio Ocupado!!!!!");
+                System.out.println("Espacio ya esta en uso!!");
             }
         }
         }while(ganador !=true);
